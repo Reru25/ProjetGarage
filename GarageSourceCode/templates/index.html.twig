@@ -1,0 +1,190 @@
+﻿{% extends 'base.html.twig' %}
+
+{% block title %}Acceuil{% endblock %}
+
+{% block content %}
+    <img class="mainPageImage">
+    <div class="prestations">
+        <p class='t-center padding-10 f-3'>Prestations</p>
+        <div class="slider">
+            <button onclick='prestationSlider.sliderLeft()' class='arrow-btn'><</button>
+            <div id='vp' class='sliderViewPort'>
+                <div id='bnd' class='slider-band'>
+                    {% for prestation in prestations%}
+                            <div class="card">
+                                <div class='card-img-container'>
+                                    <div class='fade'>
+                                    </div>
+                                    <p>{{prestation.title}}</p>
+                                    <img src='{{prestation.imgPath}}' class='card-img'>
+                                </div>
+                                <p class='f-1 padding-10 f-1'>
+                                    {{prestation.description}}
+                                </p>
+                                {% if prestation.price != null %}
+                                    <p class='f-3 bottom-10'>{{prestation.price}}€</p>
+                                {% else %}
+                                    <button onclick="location.href='./contact';" class=' btn f-2 bottom-10'>
+                                        Obtenir un devis
+                                    </button>
+                                {% endif %}
+                            </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <button onclick='prestationSlider.sliderRight()' class='arrow-btn'>></button>
+        </div>
+    </div>
+    <div class='annonces-container'>
+
+        <div class='annonces-container-infoBlock'>
+            <p class='f-3 padding-10'>Voitures d’occasion disponibles chez nous!</p>
+            <button class='btn f-2' onclick="location.href='./announcements';">
+                Plus d'offres
+            </button>
+        </div>
+        {% set lastIndex = annonces|length - 1 %}
+        <a href='./annoncement{{ annonces[lastIndex].id }}'>
+            <div class='annonce-card'>
+                <img class='annonce-card-img' src='{{ annonces[lastIndex].imgPath1 }}'>
+                <div class='annonce-card-info'>
+                    <div class='annonce-card-info-price'>
+                        <p class='f-2'>{{ annonces[lastIndex].price }} €</p>
+                    </div>
+                    <div class='annonce-card-info-description'>
+                        <p class='f-2'>{{ annonces[lastIndex].brand }} {{ annonces[lastIndex].model }}</p>
+                        <div class='annonce-card-info-description-points'>
+                            <div class='annonce-card-info-description-points-column'>
+                                <p class='f-1 '><img src='sources/img/year_icon.png' class='annonce-card-info-description-img'> {{ annonces[lastIndex].year }}</p>
+                                <p class='f-1'><img src='sources/img/mileage_icon.png' class='annonce-card-info-description-img'> {{ annonces[lastIndex].mileage }} km</p>
+                            </div>
+                            <div class='annonce-card-info-description-points-column'>
+                                <p class='f-1'><img src='sources/img/transmission_icon.png' class='annonce-card-info-description-img'> {{ annonces[lastIndex].transmission }}</p>
+                                <p class='f-1'><img src='sources/img/gas_icon.png' class='annonce-card-info-description-img'> {{ annonces[lastIndex].fuel_type }}</p>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a href='./annoncement{{ annonces[lastIndex - 1].id }}'>
+            <div class='annonce-card desktop-only'>
+                <img class='annonce-card-img' src='{{ annonces[lastIndex - 1].imgPath1 }}'>
+                <div class='annonce-card-info'>
+                    <div class='annonce-card-info-price'>
+                        <p class='f-2'>{{ annonces[lastIndex - 1].price }} €</p>
+                    </div>
+                    <div class='annonce-card-info-description'>
+                        <p class='f-2'>{{ annonces[lastIndex - 1].brand }} {{ annonces[lastIndex - 1].model }}</p>
+                        <div class='annonce-card-info-description-points'>
+                            <div class='annonce-card-info-description-points-column'>
+                                <p class='f-1 '><img src='sources/img/year_icon.png' class='annonce-card-info-description-img'> {{ annonces[lastIndex - 1].year }}</p>
+                                <p class='f-1'><img src='sources/img/mileage_icon.png' class='annonce-card-info-description-img'> {{ annonces[lastIndex - 1].mileage }} km</p>
+                            </div>
+                            <div class='annonce-card-info-description-points-column'>
+                                <p class='f-1'><img src='sources/img/transmission_icon.png' class='annonce-card-info-description-img'> {{ annonces[lastIndex - 1].transmission }}</p>
+                                <p class='f-1'><img src='sources/img/gas_icon.png' class='annonce-card-info-description-img'> {{ annonces[lastIndex - 1].fuel_type }}</p>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class='avis-container'>
+        {% set avisTotal = avisList|length %}
+        <div class='rating-container'>
+            <div class='avis-title'>
+                <div class='stars-container'>
+                    {% if average > 0 %}
+                        <img class='star full'>
+                    {% else %}
+                        <img class='star empty'>
+                    {% endif %}
+                    {% if average > 1 %}
+                        <img class='star full'>
+                    {% else %}
+                        <img class='star empty'>
+                    {% endif %}
+                    {% if average > 2 %}
+                        <img class='star full'>
+                    {% else %}
+                        <img class='star empty'>
+                    {% endif %}
+                    {% if average > 3 %}
+                        <img class='star full'>
+                    {% else %}
+                        <img class='star empty'>
+                    {% endif %}
+                    {% if average > 4 %}
+                        <img class='star full'>
+                    {% else %}
+                        <img class='star empty'>
+                    {% endif %}
+                </div>
+                {{average}}/5 sur {{avisTotal}} avis
+            </div>
+        </div>
+        <div class='slider'>
+            <button onclick='avisSlider.sliderLeft()' class='arrow-btn'><</button>
+            <div id='vp2' class='sliderViewPort'>
+                <div id='bnd2' class='slider-band'>
+                    {% for avis in avisList|reverse %}
+                        {% if avis.wasModerated is same as(true) %}
+                            <div class='avis-card'>
+                                <p class='padding-10 oneRow'>{{ avis.userMail.eMail }}</p>
+                                <div class='stars-container'>
+                                    {% if avis.grade > 0 %}
+                                        <img class='star full'>
+                                    {% else %}
+                                        <img class='star empty'>
+                                    {% endif %}
+                                    {% if avis.grade > 1 %}
+                                        <img class='star full'>
+                                    {% else %}
+                                        <img class='star empty'>
+                                    {% endif %}
+                                    {% if avis.grade > 2 %}
+                                        <img class='star full'>
+                                    {% else %}
+                                        <img class='star empty'>
+                                    {% endif %}
+                                    {% if avis.grade > 3 %}
+                                        <img class='star full'>
+                                    {% else %}
+                                        <img class='star empty'>
+                                    {% endif %}
+                                    {% if avis.grade > 4 %}
+                                        <img class='star full'>
+                                    {% else %}
+                                        <img class='star empty'>
+                                    {% endif %}
+                                </div>
+                                <p class='padding-10'>{{avis.review}}</p>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <button onclick='avisSlider.sliderRight()' class='arrow-btn'>></button>
+        </div>
+        <div class='t-center'>
+            <button class='btn f-2 t-center' onclick="location.href='./ajouter-avis';">
+                    Laisser un avis
+            </button>
+            <button class='btn f-2 t-center' onclick="location.href='./avis-list';">
+                    Voir plus
+            </button>
+        </div>
+    </div> 
+    <script src='slider.js'></script>
+    <script>
+        let prestationSlider = new Slider('vp','bnd','.card');
+        prestationSlider.setShownOnDesctop(5)
+
+
+        let avisSlider = new Slider('vp2','bnd2','.avis-card');
+        avisSlider.setShownOnMobile(2)
+        avisSlider.setShownOnDesctop(6)
+    </script>
+{% endblock %}

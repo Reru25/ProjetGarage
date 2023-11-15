@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des commentaires{% endblock %}
+
+{% block content %}
+    <ul class='breadcrumbs'>
+        <li class='breadcrumb'><a class='breadcrumb' href="./">Accueil ></a></li>
+        <li class='breadcrumb'>Liste des commentaires</li>
+    </ul>
+    <h3 class='f-3 t-center'>Liste des commentaires</h3>
+        {% for avis in reviews|reverse %}
+        <div class='adaptive-container'>
+            <div class='adaptive-list'>
+                <p class='f-2 t-left'>{{avis.userMail.eMail}}</p>
+                <div class='stars-container t-left'>
+                    {% if avis.grade > 0 %}
+                        <img class='star full'>
+                    {% else %}
+                        <img class='star empty'>
+                    {% endif %}
+                    {% if avis.grade > 1 %}
+                        <img class='star full'>
+                    {% else %}
+                        <img class='star empty'>
+                    {% endif %}
+                    {% if avis.grade > 2 %}
+                        <img class='star full'>
+                    {% else %}
+                        <img class='star empty'>
+                    {% endif %}
+                    {% if avis.grade > 3 %}
+                        <img class='star full'>
+                    {% else %}
+                        <img class='star empty'>
+                    {% endif %}
+                    {% if avis.grade > 4 %}
+                        <img class='star full'>
+                    {% else %}
+                        <img class='star empty'>
+                    {% endif %}
+                </div>
+                <p class='f-1 t-left bg-1'>{{ avis.review }}</p>
+                <br>
+                {% if app.user %}
+                    {% if app.user.roles[0] is same as('ROLE_ADMIN') %}
+                    <button 
+                        class='btn' 
+                        onclick= 'location.href="/supprimer-avis"+ {{ avis.id }}'>
+                        SUPPRIMER
+                    </button>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

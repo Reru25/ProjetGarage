@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Houraires de travaille{% endblock %}
+
+{% block content %}
+    <ul class='breadcrumbs'>
+        <li class='breadcrumb'><a class='breadcrumb' href="./">Accueil ></a></li>
+        <li class='breadcrumb'>Horaires</li>
+    </ul>
+
+    <div class='info-container'>
+        <div class='info-block'>
+            <div class=' padding-10 info-block-section'>
+                <p class='f-3 padding-10'>Horaires de travaille</p>
+                <div class='footer-section-horaires'>
+                    <table class='f-2'>
+                        <tr>
+                            <th>Lundi</th>
+                            <th>{{shedule.monday}}</th>
+                        </tr>
+                        <tr>
+                             <th>Mardi</th>
+                            <th>{{shedule.tuesday}}</th>
+                        </tr>
+                        <tr>
+                            <th>Mercredi</th>
+                            <th>{{shedule.wednesday}}</th>
+                        </tr>
+                        <tr>
+                            <th>Jeudi</th>
+                            <th>{{shedule.thursday}}</th>
+                        </tr>
+                        <tr>
+                            <th>Vendredi</th>
+                            <th>{{shedule.friday}}</th>
+                        </tr>
+                        <tr>
+                            <th>Samedi</th>
+                            <th>{{shedule.saturday}}</th>
+                        </tr>
+                        <tr>
+                            <th>Dimanche</th>
+                            <th>{{shedule.sunday}}</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class='info-block-section desktop-only'>
+                <img class='info-img' src='sources/img/hours_img.jpg'>
+            </div>
+        </div>
+    </div>
+{% endblock %}

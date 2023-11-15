@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Houraires de travail{% endblock %}
+
+{% block content %}
+    <ul class='breadcrumbs'>
+        <li class='breadcrumb'><a class='breadcrumb' href="./">Accueil ></a></li>
+        <li class='breadcrumb'><a class='breadcrumb' href="./espace-personnel">Espace personnel ></a></li>
+        <li class='breadcrumb'>Demandes de contact</li>
+    </ul>
+        <h3 class='f-3 t-center'>Liste des contacts</h3>
+        {% if contactRequests|length < 1 %}
+            <h1 class='f-1 t-center'>Aucun nouvelle demande de contact</h1>
+        {% endif %}
+        {% for contactRequest in contactRequests %}
+        <div class='adaptive-container'>
+            <div class='adaptive-list'>
+                <p class='f-1 t-left'>Prénom</p>
+                <p class='f-1 t-left bg-1'>{{contactRequest.userFirstName}} </p>
+                <p class='f-1 t-left'>Nom</p>
+                <p class='f-1 t-left bg-1'>{{contactRequest.userLastName}}</p>
+                <p class='f-1 t-left'>Mail</p>
+                <p class='f-1 t-left bg-1'>{{contactRequest.userEmail}} </p>
+                <p class='f-1 t-left'>Numéro</p>
+                <p class='f-1 t-left bg-1'>{{contactRequest.userPhoneNumber}} </p>
+                <p class='f-1 t-left'>Sujet de message</p>
+                <p class='f-1 t-left bg-1'>{{contactRequest.subject}} </p>
+                <p class='f-1 t-left'>Message</p>
+                <p class='f-1 t-left bg-1'>{{contactRequest.userMessage}} </p>
+                <br>
+                <button
+                    class='btn',
+                    onclick= 'location.href="/supprimer-demande"+ {{ contactRequest.id }}'
+                    >
+                    supprimer
+                </button>
+                <br>
+            </div>
+        </div>
+        {% endfor %}
+{% endblock %}

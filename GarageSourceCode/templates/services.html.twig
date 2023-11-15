@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Prestations{% endblock %}
+
+{% block content %}
+    <div class='annonces-block-list'>
+        {% for service in services %}
+            <div class='annonce-block '>
+                <div class='annonce-img-container'>
+                    <img src='{{service.imgPath}}' class='annonces-img img-width-fill'>
+                </div>
+                <div class='annonce-info'>
+                    <p class='f-3 padding-10'>{{service.title}}</p>
+                        <p class='f-2 padding-10'>{{service.description}}</p>
+                        {% if service.price != null %}
+                            <p class='f-3 padding-10'>{{service.price}}€</p>
+                        {% else %}
+                            <button 
+                                class=' btn f-2'
+                                onclick= 'location.href="/contact"'
+                                >
+                                Obtenir un devis
+                            </button>
+                        {% endif %}
+                        {% if app.user %}
+                            {% if app.user.roles[0] is same as('ROLE_ADMIN') %}
+                                <button 
+                                    class='btn margin-10 t-center'
+                                    onclick= 'location.href="/supprimer-service"+ {{ service.id }}'
+                                    >
+                                    Supprimer
+                                </button>
+                            {% endif %}
+                        {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

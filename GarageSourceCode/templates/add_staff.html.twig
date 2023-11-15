@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau compte employé{% endblock %}
+
+{% block content %}
+    <ul class='breadcrumbs'>
+        <li class='breadcrumb'><a class='breadcrumb' href="./">Accueil ></a></li>
+        <li class='breadcrumb'><a class='breadcrumb' href="./espace-personnel">Espace personnel ></a></li>
+        <li class='breadcrumb'>Nouveau compte employé</li>
+    </ul>
+    <div class='adaptive-container'>
+        <div class='adaptive-list'>
+            <h2 class='f-2'>Nouveau compte employé</h2>
+            {{ form_errors(registrationForm) }}
+
+            {{ form_start(registrationForm) }}
+                {{ form_row(registrationForm.email) }}
+                {{ form_row(registrationForm.plainPassword, {
+                    label: 'Mot de passe'
+                }) }}
+
+                <button type="submit" class="btn">Enregistrer</button>
+            {{ form_end(registrationForm) }}
+        </div>
+    </div>
+{% endblock %}

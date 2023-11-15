@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Annonce {{annonce.brand}} {{annonce.model}}{% endblock %}
+
+{% block content %}
+    <ul class='breadcrumbs'>
+        <li class='breadcrumb'><a class='breadcrumb' href="./">Accueil ></a></li>
+        <li class='breadcrumb'><a class='breadcrumb' href="./announcements">Annonces ></a></li>
+        <li class='breadcrumb'>{{annonce.brand}} {{annonce.model}}</li>
+    </ul>
+    <div class='annonce-main-block'>
+        <div class='slider'>
+            <button onclick='photoSlider.sliderLeft()' class='arrow-btn'><</button>
+            <div id='vp3' class='sliderViewPort'>
+                <div id='bnd3' class='slider-band'>
+                    {% if annonce.imgPath1 != null%}
+                        <img class='slider-img' src='{{annonce.imgPath1}}'>
+                    {% endif %}
+                    {% if annonce.imgPath2 != null%}
+                        <img class='slider-img' src='{{annonce.imgPath2}}'>
+                    {% endif %}
+                    {% if annonce.imgPath3 != null%}
+                        <img class='slider-img' src='{{annonce.imgPath3}}'>
+                    {% endif %}
+                    {% if annonce.imgPath4 != null%}
+                        <img class='slider-img' src='{{annonce.imgPath4}}'>
+                    {% endif %}
+                    {% if annonce.imgPath5 != null%}
+                        <img class='slider-img' src='{{annonce.imgPath5}}'>
+                    {% endif %}
+                </div>
+            </div>
+            <button onclick='photoSlider.sliderRight()' class='arrow-btn'>></button>
+        </div>  
+        <div class='info'>
+            <div>
+            <p class='f-3 t-center padding-10'>{{annonce.brand}} {{annonce.model}}</p>
+            <p class='f-2'><img src='sources/img/year_icon.png' class='annonce-card-info-description-img'>{{annonce.year}}</p>
+            <p class='f-2'><img src='sources/img/mileage_icon.png' class='annonce-card-info-description-img'>{{annonce.mileage}}</p>
+            <p class='f-2'><img src='sources/img/gas_icon.png' class='annonce-card-info-description-img'>{{annonce.fuelType}}</p>
+            <p class='f-2'><img src='sources/img/transmission_icon.png' class='annonce-card-info-description-img'>{{annonce.transmission}}</p>
+            </div>
+            <div class='info-2'>
+            <p class='f-3 t-center'>{{annonce.price}} €</p>
+            {% if app.user %}
+                {% if (app.user.roles[0] is same as('ROLE_ADMIN')) or (app.user.roles[0] is same as('ROLE_STAFF')) %}
+                    <button 
+                        class='btn margin-10 t-center'
+                        onclick= 'location.href="/modifier-annonce"+ {{ annonce.id }}'
+                        >
+                        Modifier
+                    </button>
+                    <button 
+                        class='btn margin-10 t-center'
+                        onclick= 'location.href="/supprimer-annonce"+ {{ annonce.id }}'
+                        >
+                        Supprimer
+                    </button>
+                {% endif %}
+            {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class='description-container'>
+        <p class='f-3'>Description</p>
+        <p class='f-2'>{{annonce.description|nl2br|raw }}</p>
+    </div>
+
+    {% if requestConfirm %}
+        <p class='t-center f-3 padding-30'>Votre demande a eté prise en compte !</p>
+    {% else %}
+         <p class='t-center f-2 padding-30'>Vous avez des questions sur cette annonce ?</p>
+
+        <p class='t-center f-1'>Remplissez ce formulaire et on vous contactera au plus bref délai !</p>
+
+        <div class='centered-content'>
+            {{ form_start(form, {'attr': {'class': 'form-inner-container'}}) }}
+
+                {{ form_widget(form) }}
+                <button
+                    type='sybmit'
+                    class='btn padding-10'>
+                    Envoyer
+                </button>
+
+            {{ form_end(form)}}
+        </div>
+    {% endif %}
+    
+    <script src='slider.js'></script>
+    <script>
+        let photoSlider = new Slider('vp3','bnd3','.slider-img')
+        photoSlider.setShownOnMobile(1)
+        photoSlider.setShownOnDesctop(1)
+    </script>
+{% endblock %}

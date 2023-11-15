@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block content %}
+    <ul class='breadcrumbs'>
+        <li class='breadcrumb'><a class='breadcrumb' href="./">Accueil ></a></li>
+        <li class='breadcrumb'>Contact</li>
+    </ul>
+
+    <p class='t-center f-1'>Une question à poser ?</p>
+    <p class='t-center f-1'>Un devis à renseigner ?</p>
+    <p class='t-center f-3 padding-10'>CONTACTEZ-NOUS PAR</p>
+
+    <div class='contact-element'>
+        <img class='contact-icon padding-10' src='sources/img/mail_icon.png'>
+        <p class=' padding-10 contact-p'>{{ contact.eMail}}</p>
+    </div>
+
+    <p class='t-center f-2 padding-30'>OU</p>
+
+    <div class='contact-element'>
+        <img class='contact-icon padding-10' src='sources/img/phone_icon.png'>
+        <p class=' padding-10 contact-p'>{{ contact.phonenumber }}</p>
+    </div>
+
+    <p class='t-center f-2 padding-30'>OU</p>
+
+        <p class='t-center f-1'>Remplissez ce formulaire et on vous contactera au plus bref délai!</p>
+
+    <div class='centered-content'>
+        {{ form_start(form, {'attr': {'class': 'form-inner-container'}}) }}
+
+            {{ form_widget(form) }}
+            <button
+                type='sybmit'
+                class='btn padding-10'>
+                Envoyer
+            </button>
+
+        {{ form_end(form)}}
+    </div>
+
+{% endblock %}

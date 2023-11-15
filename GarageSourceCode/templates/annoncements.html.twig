@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Annonces{% endblock %}
+
+{% block content %}
+    <ul class='breadcrumbs'>
+        <li class='breadcrumb'><a class='breadcrumb' href="./">Accueil ></a></li>
+        <li class='breadcrumb'>Annonces</li>
+    </ul>
+
+    <div class='annonces-page-container'>
+        <div class='filtres-container'>
+
+            <label class='t-center f-3'>Filtres</label>
+            <label class='f-2'>Prix</label>
+            <input class='input' id='ipmin' type="text" placeholder='min'></input>
+            <input class='input' id='ipmax' type="text" placeholder='max'></input>
+            <label class='f-2'>Kilométrage</label>
+            <input class='input' id='ikmin' type="text" placeholder='min'></input>
+            <input class='input' id='ikmax' type="text" placeholder='max'></input>
+            <label class='f-2'>Année</label>
+            <input class='input' id='iymin' type="text" placeholder='min'></input>
+            <input class='input' id='iymax'  type="text" placeholder='max'></input>
+
+            <label class='t-center f-3 padding-10'>Trier</label>
+            
+            <p class='f-var'>
+            <label for="priceUp">Prix croissant</label>
+            <input id='priceUp' type="radio" name="Sort"></input>
+            </p>
+            <p class='f-var'>
+            <label for="priceDown">Prix décroissant</label>
+            <input id='priceDown' type="radio" name="Sort"></input>
+            </p>
+            <p class='f-var'>
+            <label for="mileageUp">Kilometrage croissant</label>
+            <input id='mileageUp' type="radio" name="Sort"></input>
+            </p>
+            <p class='f-var'>
+            <label for="mileageDown">Kilometrage décroissant</label>
+            <input id='mileageDown' type="radio" name="Sort"></input>
+            </p>
+            <p class='f-var'>
+            <label for="yearUp">Année croissant</label>
+            <input id='yearUp' type="radio" name="Sort"></input>
+            </p>
+            <p class='f-var'>
+            <label for="yearDown">Anne décroissant</label>
+            <input id='yearDown' type="radio" name="Sort"></input>
+            </p>
+
+
+            <div class='centered-content'>
+                <button id='filtres-btn' class='btn'>Appliquer les filtres</button>
+                <button id='filtres-erase-btn' class='btn'>Effacer les filtres</button>
+            </div>
+            
+        </div>
+        <div class='annonces-list'>
+            <div class='annonces-header'>
+                <div class='annonces-header-element'>
+                    <p>{{ annonces|length }}Annonces au total</P>
+                </div>
+            </div>
+            <div id='ac1' class='annonces-blocks-list'>
+            </div>
+        </div>
+    </div>
+    <script>
+        let annonces = {{ annoncesJSON|raw }}
+    </script>
+    <script src='annonces.js'>
+    </script>
+{% endblock %}

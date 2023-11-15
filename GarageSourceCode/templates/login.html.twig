@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block content %}
+<ul class='breadcrumbs'>
+        <li class='breadcrumb'><a class='breadcrumb' href="./">Accueil ></a></li>
+        <li class='breadcrumb'>Connexion</li>
+    </ul>
+    <div class='adaptive-container'>
+        <div class='adaptive-list'>
+            <h2 class='f-2'>Connexion</h2>
+            <form method="post">
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+
+                {% if app.user %}
+                    <div class="mb-3">
+                        Vous êtes connecté en tant que {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Déconnexion</a>
+                    </div>
+                {% endif %}
+                <label class='form-input' for="inputEmail">Email</label>
+                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-input bg-1 form-control" autocomplete="email" required autofocus>
+                <label class='form-input' for="inputPassword">Mot de pass</label>
+                <input type="password" name="password" id="inputPassword" class="form-input bg-1 form-control" autocomplete="current-password" required>
+
+                <input type="hidden" name="_csrf_token"
+                    value="{{ csrf_token('authenticate') }}"
+                >
+                <br>
+                <p class='f-1'>Vous n'êtes pas encore enregistré ? <a class='f-2' href='./register'>Enregistrez-vous ici !</a></p>
+                <br>
+                <button class="btn btn-lg btn-primary" type="submit">
+                    Connexion
+                </button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

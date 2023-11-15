@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier les informations de contact{% endblock %}
+
+{% block content %}
+    <ul class='breadcrumbs'>
+        <li class='breadcrumb'><a class='breadcrumb' href="./">Accueil ></a></li>
+        <li class='breadcrumb'><a class='breadcrumb' href="./espace-personnel">Espace personnel ></a></li>
+        <li class='breadcrumb'>Modification de contact</li>
+    </ul>
+    <div class='adaptive-container'>
+        <div class='adaptive-list'>
+            <h2 class='f-2'>Modification des informations de contact</h2>
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+                <button
+                    type='submit'
+                    class='btn padding-10'>
+                    Envoyer
+                </button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

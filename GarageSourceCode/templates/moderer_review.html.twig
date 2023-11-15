@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modération{% endblock %}
+
+{% block content %}
+    <ul class='breadcrumbs'>
+        <li class='breadcrumb'><a class='breadcrumb' href="./">Accueil ></a></li>
+        <li class='breadcrumb'><a class='breadcrumb' href="./espace-personnel">Espace personnel ></a></li>
+        <li class='breadcrumb'>Modération</li>
+    </ul>
+    <h3 class='f-3 t-center'>Modération des commentaires</h3>
+    {% if reviews|length < 1 %}
+        <h1 class='f-1 t-center'>Aucun nouveau commentaire</h1>
+    {% endif %}
+    {% for review in reviews %}
+    <div class='adaptive-container'>
+        <div class='adaptive-list'>
+            <p class='f-1 t-left'>Email</p>
+            <p class='f-1 t-left bg-1'>{{review.userMail.eMail}}</p>
+            <p class='f-1 t-left'>Note</p>
+            <p class='f-1 t-left bg-1'>{{review.grade}}</p>
+            <p class='f-1 t-left'>Avis</p>
+            <p class='f-1 t-left bg-1'>{{review.review}}</p>
+            <br>
+            <button 
+                    class='btn' 
+                    onclick= 'location.href="/approuver"+ {{ review.id }}'>
+                    Approuver
+            </button>
+            <button 
+                    class='btn' 
+                    onclick= 'location.href="/supprimer-avis"+ {{ review.id }}'>
+                    Supprimer
+            </button>
+        </div>
+    </div>
+    {% endfor %}
+{% endblock %}

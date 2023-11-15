@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Message{% endblock %}
+
+{% block content %}
+    <ul class='breadcrumbs'>
+        <li class='breadcrumb'><a class='breadcrumb' href="./">Accueil ></a></li>
+        <li class='breadcrumb'>Message</li>
+    </ul>
+    <div class='adaptive-container'>
+        <div class='adaptive-list'>
+            <p>Votre e-mail a été confirmé ! Vous pouvez maintenant vous connecter.</p>
+            <br>
+            <button
+                type='sybmit'
+                onclick="location.href='./login';"
+                class='btn padding-10'>
+                Connexion
+            </button>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Espace personnel{% endblock %}
+
+{% block content %}
+    <ul class='breadcrumbs'>
+        <li class='breadcrumb'><a class='breadcrumb' href="./">Accueil ></a></li>
+        <li class='breadcrumb'>Espace personnel</li>
+    </ul>
+    <h1 class='t-center f-3'>Bienvenue {{ app.user.email}}! </h1>
+    {% if app.user.roles[0] is same as('ROLE_ADMIN')  %}
+        <h1 class='t-center f-3'>Utilisateur avec droits ADMINISTRATEUR</h1>
+    {% endif %}
+    {% if app.user.roles[0] is same as('ROLE_STAFF')  %}
+        <h1 class='t-center f-3'>Utilisateur avec droits EMPLOYÉ</h1>
+    {% endif %}
+    <div class='adaptive-container'>
+        <div class='adaptive-list'>
+            <h2 class='t-center f-2 adaptive-title'>Functionalités de l'espace personnel</h2>
+            <p class='adaptive-btn-p f-1'><a class='adaptive-btn f-1' href='./ajouter-avis'>Laisser un avis</a></p>
+        {% if (app.user.roles[0] is same as('ROLE_ADMIN')) or (app.user.roles[0] is same as('ROLE_STAFF')) %}
+            <h2 class='t-center f-2 adaptive-title'>Fonctionnalités dédiées aux employés</h2>
+            <p class='adaptive-btn-p f-1'><a class='adaptive-btn f-1' href='./ajouter-annonce'>Ajouter une voiture à la vente</a></p>
+            <p class='adaptive-btn-p f-1'><a class='adaptive-btn f-1' href='./contact-liste'>Afficher les demandes de contact ({{ contactReq|length }})</a></p>
+        {% endif %}
+        {% if app.user.roles[0] is same as('ROLE_ADMIN') %}
+            <h2 class='t-center f-2 adaptive-title'>Panneau d'administration</h2>
+            <p class='adaptive-btn-p f-1'><a class='adaptive-btn f-1' href='./ajouter-service'>Ajouter une prestation</a></p>
+            <p class='adaptive-btn-p f-1'><a class='adaptive-btn f-1' href='./ajouter-emploie'>Ajouter un compte employé</a></p>
+            <p class='adaptive-btn-p f-1'><a class='adaptive-btn f-1' href='./list-emploie'>Afficher la liste des utilisateurs</a></p>
+            <p class='adaptive-btn-p f-1'><a class='adaptive-btn f-1' href='./hours-edit'>Modifier les horaires de travaille</a></p>
+            <p class='adaptive-btn-p f-1'><a class='adaptive-btn f-1' href='./contact-edit'>Modifier les informations de contact</a></p>
+            <p class='adaptive-btn-p f-1'><a class='adaptive-btn f-1' href='./moderation'>Modérer les nouveaux commentaires ({{ reviews|length }})</a></p>
+            <br>
+        </div>
+    </div>
+    {% endif %}
+{% endblock %}

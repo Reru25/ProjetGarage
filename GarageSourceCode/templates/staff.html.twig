@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Employés{% endblock %}
+
+{% block content %}
+    <ul class='breadcrumbs'>
+        <li class='breadcrumb'><a class='breadcrumb' href="./">Accueil ></a></li>
+        <li class='breadcrumb'><a class='breadcrumb' href="./espace-personnel">Espace personnel ></a></li>
+        <li class='breadcrumb'>Liste des utilisateurs</li>
+    </ul>
+    <h3 class='f-3 t-center'>Comptes employés</h3>
+    {% for staff in staffList %}
+    <div class='adaptive-container'>
+        <div class='adaptive-list'>
+            <p class='f-1 t-left'>ID</p>
+            <p class='f-1 t-left bg-1'>{{ staff.id }}</p>
+            <p class='f-1 t-left'>Email</p>
+            <p class='f-1 t-left bg-1'>{{ staff.email}}</p>
+        <button 
+            class='btn' 
+            onclick= 'location.href="/supprimer-staff"+ {{ staff.id }}'>
+            SUPPRIMER
+        </button>
+        </div>
+    </div>
+    {% endfor %}
+    <h3 class='f-3 t-center'>Comptes utilisateur</h3>
+    {% for staff in usersList %}
+    <div class='adaptive-container'>
+        <div class='adaptive-list'>
+            <p class='f-1 t-left'>ID</p>
+            <p class='f-1 t-left bg-1'>{{ staff.id }}</p>
+            <p class='f-1 t-left'>E-mail</p>
+            <p class='f-1 t-left bg-1'>{{ staff.email}}</p>
+        <button 
+            class='btn' 
+            onclick= 'location.href="/supprimer-staff"+ {{ staff.id }}'>
+            SUPPRIMER
+        </button>
+        </div>
+    </div>
+    {% endfor %}
+{% endblock %}

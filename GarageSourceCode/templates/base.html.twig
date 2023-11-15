@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=0.8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        {% block stylesheets %}
+        {% endblock %}
+        {% block javascripts %}
+        {% endblock %}
+    </head>
+    <body>
+        <header class='sticky'>
+            <a href='./'>
+                <img class="logo">
+            </a>
+            <ul class='nav-menu menu-left desktop-only'>
+                <li class='menu-element f-2'><a class='menuBtn' href='./services'>Prestations</a></li>
+                <li class='menu-element f-2'><a class='menuBtn' href='./announcements'>Voitures d'occasion</a></li>
+                <li class='menu-element f-2'><a class='menuBtn' href='./hours'>Horaires de travail</a></li>
+            </ul>
+            <ul class='nav-menu menu-right desktop-only'>
+                <li class='menu-element f-2'>
+                    {% if app.user %}
+                        <a class='menuBtn' href='./espace-personnel'>
+                            <img src='sources/img/user_icon.png' class='annonce-card-info-description-img'>
+                            {{ app.user.email }}
+                        </a>
+                    {% else %}
+                        <a class='menuBtn' href='./login'>
+                            <a href='./login'>
+                            <img src='sources/img/logout_icon.png' class='annonce-card-info-description-img'>
+                            Connexion
+                        </a>
+                    {% endif %}
+                </li>
+                {% if app.user %}
+                    <li class='menu-element f-2'>
+                        <a class='menuBtn' href='./logout'>
+                            <img src='sources/img/logout_icon.png' class='annonce-card-info-description-img'>
+                            Déconnexion
+                        </a>
+                    </li>
+                {% endif %}
+                <li class='menu-element f-2'>
+                    <a class='menuBtn' href='./contact'>
+                        <img src='sources/img/contact_icon.png' class='annonce-card-info-description-img'>
+                        Contactez-nous
+                    <a>
+                </li>
+            </ul>
+            <img id='burgerIcon' onclick='toggleBurgerMenu()' class="burger-icon mobile-only">
+        </header>
+        
+        <div id='burgerMenu' class='burger-menu hide'>
+            <ul class='mobile-menu-list'>
+                <li>
+                    <a href='./services' class='mobile-btn menu-element'>
+                        <img src='sources/img/service_icon.png' class='burger-menu-element-icon'>
+                        <p class='f-2 mobile-btn-title'>Prestations</p>
+                        <div class='arrow-container'>
+                            <img src='sources/img/placeholder.png' class='arrow-img'>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href='./announcements' class='mobile-btn menu-element'>
+                        <img src='sources/img/car_icon.png' class='burger-menu-element-icon'>
+                        <p class='f-2 mobile-btn-title'>Voitures d'occasion</p>
+                        <div class='arrow-container'>
+                            <img src='sources/img/icon_arrow.png' class='arrow-img'>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href='./hours' class='mobile-btn menu-element'>
+                        <img src='sources/img/time_icon.png' class='burger-menu-element-icon'>
+                        <p class='f-2 mobile-btn-title'>Horaires de travail</p>
+                        <div class='arrow-container'>
+                            <img src='sources/img/icon_arrow.png' class='arrow-img'>
+                        </div>
+                    </a>
+                </li>
+                {% if app.user %}
+                <li>
+                    <a href='./espace-personnel' class='mobile-btn menu-element'>
+                        <img src='sources/img/user_icon.png' class='burger-menu-element-icon'>
+                        <p class='f-2 mobile-btn-title'>{{ app.user.email }}</p>
+                        <div class='arrow-container'>
+                            <img src='sources/img/icon_arrow.png' class='arrow-img'>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href='./logout' class='mobile-btn menu-element'>
+                        <img src='sources/img/logout_icon.png' class='burger-menu-element-icon'>
+                        <p class='f-2 mobile-btn-title'>Déconnexion</p>
+                        <div class='arrow-container'>
+                            <img src='sources/img/icon_arrow.png' class='arrow-img'>
+                        </div>
+                    </a>
+                </li>
+                {% else %}
+                <li>
+                    <a href='./login' class='mobile-btn menu-element'>
+                        <img src='sources/img/user_icon.png' class='burger-menu-element-icon'>
+                        <p class='f-2 mobile-btn-title'>Connexion</p>
+                        <div class='arrow-container'>
+                            <img src='sources/img/icon_arrow.png' class='arrow-img'>
+                        </div>
+                    </a>
+                </li>
+                {% endif %}
+                <li>
+                   <a href='./contact' class='mobile-btn menu-element'>
+                        <img src='sources/img/contact_icon.png' class='burger-menu-element-icon'>
+                        <p class='f-2 mobile-btn-title'>Contactez-nous</p>
+                        <div class='arrow-container'>
+                            <img src='sources/img/icon_arrow.png' class='arrow-img'>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <section id='content' class="content-section">
+            {% block content %}
+            {% endblock %}
+        </section>
+
+        <footer>
+            <div class='footer-content'>
+                <div class='footer-section'>
+                    <p class='f-3 f-white'>Horaires de travail</p>
+                    <div class='footer-section-horaires'>
+                       <table class='f-white f-2'>
+                        <tr>
+                            <th>Lundi</th>
+                            <th>{{shedule.monday}}</th>
+                        </tr>
+                        <tr>
+                             <th>Mardi</th>
+                            <th>{{shedule.tuesday}}</th>
+                        </tr>
+                        <tr>
+                            <th>Mercredi</th>
+                            <th>{{shedule.wednesday}}</th>
+                        </tr>
+                        <tr>
+                            <th>Jeudi</th>
+                            <th>{{shedule.thursday}}</th>
+                        </tr>
+                        <tr>
+                            <th>Vendredi</th>
+                            <th>{{shedule.friday}}</th>
+                        </tr>
+                        <tr>
+                            <th>Samedi</th>
+                            <th>{{shedule.saturday}}</th>
+                        </tr>
+                        <tr>
+                            <th>Dimanche</th>
+                            <th>{{shedule.sunday}}</th>
+                        </tr>
+                    </table>
+                    </div>
+                </div>
+                <div class='footer-section'> 
+                    <p class='f-3 f-white'>Contact</p>
+                    <ul class='f-2 f-white footer-list'>
+                        <li>{{contact.email}}</li>
+                        <li>{{contact.phonenumber}}</li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+
+        <script src='burgerMenu.js'></script>
+    </body>
+</html>

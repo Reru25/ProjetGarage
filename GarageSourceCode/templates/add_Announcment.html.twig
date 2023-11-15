@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle annonce{% endblock %}
+
+{% block content %}
+    <ul class='breadcrumbs'>
+        <li class='breadcrumb'><a class='breadcrumb' href="/">Accueil ></a></li>
+        <li class='breadcrumb'><a class='breadcrumb' href="/espace-personnel">Espace personnel ></a></li>
+        <li class='breadcrumb'>Nouvelle annonce</li>
+    </ul>
+    <div class='adaptive-container'>
+        <div class='adaptive-list'>
+            <h2 class='f-2'>Nouvelle annonce</h2>
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button type='submit' class='btn padding-10'>
+                Envoyer
+            </button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
