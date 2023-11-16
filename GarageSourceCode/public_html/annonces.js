@@ -99,10 +99,8 @@ class AnnoncesViewer {
     //sort given array by given param
     sortObjectsByNumber(arr, param, ascending = true) {
         if (ascending) {
-          // Сортировка по возрастанию
           return arr.slice().sort((a, b) => a[param] - b[param]);
         } else {
-          // Сортировка по убыванию
           return arr.slice().sort((a, b) => b[param] - a[param]);
         }
       }

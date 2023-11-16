@@ -16,7 +16,7 @@ Exécution en local :
 
         7.Ouvrez GarageSourceCode/.env.
 
-        8.Configurez votre DATABASE_URL, APP_SECRET et MAILER_DSN. (APP_SECRET est facultatif, pour MAILER_DSN vous pouvez utiliser le service de test 'Mailtrap').
+        8.Configurez votre DATABASE_URL, APP_SECRET et MAILER_DSN. (Pour MAILER_DSN vous pouvez utiliser le service de test 'Mailtrap').
 
         9.Dans votre terminal, accédez au dossier GarageSourceCode et exécutez :
 
