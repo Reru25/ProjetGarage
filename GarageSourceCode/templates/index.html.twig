@@ -4,6 +4,7 @@
 
 {% block content %}
     <img class="mainPageImage">
+    {% if prestations|length > 0 %}
     <div class="prestations">
         <p class='t-center padding-10 f-3'>Prestations</p>
         <div class="slider">
@@ -35,8 +36,9 @@
             <button onclick='prestationSlider.sliderRight()' class='arrow-btn'>></button>
         </div>
     </div>
+    {% endif %}
     <div class='annonces-container'>
-
+    {% if annonces|length > 0 %} 
         <div class='annonces-container-infoBlock'>
             <p class='f-3 padding-10'>Voitures d’occasion disponibles chez nous!</p>
             <button class='btn f-2' onclick="location.href='./announcements';">
@@ -46,7 +48,9 @@
         {% set lastIndex = annonces|length - 1 %}
         <a href='./annoncement{{ annonces[lastIndex].id }}'>
             <div class='annonce-card'>
-                <img class='annonce-card-img' src='{{ annonces[lastIndex].imgPath1 }}'>
+                <div class='annonce-card-img-container'>
+                    <img class='annonce-card-img' src='{{ annonces[lastIndex].imgPath1 }}'>
+                </div>
                 <div class='annonce-card-info'>
                     <div class='annonce-card-info-price'>
                         <p class='f-2'>{{ annonces[lastIndex].price }} €</p>
@@ -67,9 +71,13 @@
                 </div>
             </div>
         </a>
+        {% endif %}
+        {% if annonces|length > 1 %} 
         <a href='./annoncement{{ annonces[lastIndex - 1].id }}'>
             <div class='annonce-card desktop-only'>
-                <img class='annonce-card-img' src='{{ annonces[lastIndex - 1].imgPath1 }}'>
+                <div class='annonce-card-img-container'>
+                    <img class='annonce-card-img' src='{{ annonces[lastIndex - 1].imgPath1 }}'>
+                </div>
                 <div class='annonce-card-info'>
                     <div class='annonce-card-info-price'>
                         <p class='f-2'>{{ annonces[lastIndex - 1].price }} €</p>
@@ -90,7 +98,10 @@
                 </div>
             </div>
         </a>
+        {% endif %}
     </div>
+
+    {% if avisList|length > 0 %}
     <div class='avis-container'>
         {% set avisTotal = avisList|length %}
         <div class='rating-container'>
@@ -177,6 +188,7 @@
             </button>
         </div>
     </div> 
+    {% endif %}
     <script src='slider.js'></script>
     <script>
         let prestationSlider = new Slider('vp','bnd','.card');

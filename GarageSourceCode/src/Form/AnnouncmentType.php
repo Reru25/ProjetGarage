@@ -9,6 +9,7 @@ use App\Entity\Annonce;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class AnnouncmentType extends AbstractType
 {
@@ -38,7 +39,7 @@ class AnnouncmentType extends AbstractType
                     'class' => 'form-input bg-1 input-dynamic-h',
                     ),
                 ])
-            ->add('year', TextType::class, [
+            ->add('year', NumberType::class, [
                 'label'=>'Année',
                 'required' => true,
                 'attr' => array(
@@ -46,7 +47,7 @@ class AnnouncmentType extends AbstractType
                     'maxlength' => 4,
                     ),
                 ])
-            ->add('mileage', TextType::class, [
+            ->add('mileage', NumberType::class, [
                 'label'=>'Kilométrage',
                 'required' => true,
                 'attr' => array(
@@ -70,7 +71,7 @@ class AnnouncmentType extends AbstractType
                     'maxlength' => 20,
                     ),
                 ])
-            ->add('price', TextType::class, [
+            ->add('price', NumberType::class, [
                 'label'=>'Prix',
                 'required' => true,
                 'attr' => array(

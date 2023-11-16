@@ -106,7 +106,7 @@ class AnnouncmentsController extends AbstractController
                     $newFileName
                 );
 
-                $newAnnouncement->setImgPath1('/sources/annonces/'. $newFileName);
+                $newAnnouncement->setImgPath1('sources/annonces/'. $newFileName);
             }
 
             $imagePath2 = $AnnouncmentForm->get('imgPath2')->getData();
@@ -118,7 +118,7 @@ class AnnouncmentsController extends AbstractController
                     $newFileName
                 );
 
-                $newAnnouncement->setImgPath2('/sources/annonces/'. $newFileName);
+                $newAnnouncement->setImgPath2('sources/annonces/'. $newFileName);
             }
 
             $imagePath3 = $AnnouncmentForm->get('imgPath3')->getData();
@@ -130,7 +130,7 @@ class AnnouncmentsController extends AbstractController
                     $newFileName
                 );
 
-                $newAnnouncement->setImgPath3('/sources/annonces/'. $newFileName);
+                $newAnnouncement->setImgPath3('sources/annonces/'. $newFileName);
             }
 
             $imagePath4 = $AnnouncmentForm->get('imgPath4')->getData();
@@ -142,7 +142,7 @@ class AnnouncmentsController extends AbstractController
                     $newFileName
                 );
 
-                $newAnnouncement->setImgPath4('/sources/annonces/'. $newFileName);
+                $newAnnouncement->setImgPath4('sources/annonces/'. $newFileName);
             }
 
             $imagePath5 = $AnnouncmentForm->get('imgPath5')->getData();
@@ -154,7 +154,7 @@ class AnnouncmentsController extends AbstractController
                     $newFileName
                 );
 
-                $newAnnouncement->setImgPath5('/sources/annonces/'. $newFileName);
+                $newAnnouncement->setImgPath5('sources/annonces/'. $newFileName);
             }
 
             $entityManager->persist($announcement);
@@ -208,7 +208,7 @@ class AnnouncmentsController extends AbstractController
                     $newFileName
                 );
 
-                $newAnnouncement->setImgPath1('/sources/annonces/'. $newFileName);
+                $newAnnouncement->setImgPath1('sources/annonces/'. $newFileName);
             }
 
             $imagePath2 = $AnnouncmentForm->get('imgPath2')->getData();
@@ -220,7 +220,7 @@ class AnnouncmentsController extends AbstractController
                     $newFileName
                 );
 
-                $newAnnouncement->setImgPath2('/sources/annonces/'. $newFileName);
+                $newAnnouncement->setImgPath2('sources/annonces/'. $newFileName);
             }
 
             $imagePath3 = $AnnouncmentForm->get('imgPath3')->getData();
@@ -232,7 +232,7 @@ class AnnouncmentsController extends AbstractController
                     $newFileName
                 );
 
-                $newAnnouncement->setImgPath3('/sources/annonces/'. $newFileName);
+                $newAnnouncement->setImgPath3('sources/annonces/'. $newFileName);
             }
 
             $imagePath4 = $AnnouncmentForm->get('imgPath4')->getData();
@@ -244,7 +244,7 @@ class AnnouncmentsController extends AbstractController
                     $newFileName
                 );
 
-                $newAnnouncement->setImgPath4('/sources/annonces/'. $newFileName);
+                $newAnnouncement->setImgPath4('sources/annonces/'. $newFileName);
             }
 
             $imagePath5 = $AnnouncmentForm->get('imgPath5')->getData();
@@ -256,7 +256,7 @@ class AnnouncmentsController extends AbstractController
                     $newFileName
                 );
 
-                $newAnnouncement->setImgPath5('/sources/annonces/'. $newFileName);
+                $newAnnouncement->setImgPath5('sources/annonces/'. $newFileName);
             }
 
             $entityManager->persist($announcement);
@@ -300,7 +300,7 @@ class AnnouncmentsController extends AbstractController
             $imgPath1 = str_replace('/','\\', $imgPath1);//normalizing forward slashes to backslashes
             $projectDir = $this->getParameter('kernel.project_dir');
 
-            $filesystem->remove($projectDir . '\public_html' . $imgPath1);//removing file at directory
+            $filesystem->remove($projectDir . '\public_html\\' . $imgPath1);//removing file at directory
         }
 
         //remove the image2 if directory exists
@@ -309,7 +309,7 @@ class AnnouncmentsController extends AbstractController
             $imgPath2 = str_replace('/','\\', $imgPath2);//normalizing forward slashes to backslashes
             $projectDir = $this->getParameter('kernel.project_dir');
 
-            $filesystem->remove($projectDir . '\public_html' . $imgPath2);//removing file at directory
+            $filesystem->remove($projectDir . '\public_html\\' . $imgPath2);//removing file at directory
         }
 
          //remove the image3 if directory exists
@@ -318,7 +318,7 @@ class AnnouncmentsController extends AbstractController
              $imgPath3 = str_replace('/','\\', $imgPath3);//normalizing forward slashes to backslashes
              $projectDir = $this->getParameter('kernel.project_dir');
              
-             $filesystem->remove($projectDir . '\public_html' . $imgPath3);//removing file at directory
+             $filesystem->remove($projectDir . '\public_html\\' . $imgPath3);//removing file at directory
          }
 
           //remove the image4 if directory exists
@@ -327,7 +327,7 @@ class AnnouncmentsController extends AbstractController
               $imgPath4 = str_replace('/','\\', $imgPath4);//normalizing forward slashes to backslashes
               $projectDir = $this->getParameter('kernel.project_dir');
   
-              $filesystem->remove($projectDir . '\public_html' . $imgPath4);//removing file at directory
+              $filesystem->remove($projectDir . '\public_html\\' . $imgPath4);//removing file at directory
           }
 
            //remove the image5 if directory exists
@@ -336,7 +336,7 @@ class AnnouncmentsController extends AbstractController
              $imgPath5 = str_replace('/','\\', $imgPath5);//normalizing forward slashes to backslashes
              $projectDir = $this->getParameter('kernel.project_dir');
         
-             $filesystem->remove($projectDir . '\public_html' . $imgPath5);//removing file at directory
+             $filesystem->remove($projectDir . '\public_html\\' . $imgPath5);//removing file at directory
          }
 
         $entityManager->remove($annonce);

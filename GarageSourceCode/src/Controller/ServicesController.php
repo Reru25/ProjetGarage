@@ -65,7 +65,7 @@ class ServicesController extends AbstractController
                     $newFileName
                 );
 
-                $newService->setImgPath('/sources/services/'. $newFileName);
+                $newService->setImgPath('sources/services/'. $newFileName);
             }
 
             $entityManager->persist($newService);
@@ -104,7 +104,7 @@ class ServicesController extends AbstractController
         if($imgPath !== null && $imgPath !== '') {
             $imgPath = str_replace('/','\\', $imgPath);//normalizing forward slashes to backslashes
             $projectDir = $this->getParameter('kernel.project_dir');
-            $filesystem->remove($projectDir . '\public_html' . $imgPath);
+            $filesystem->remove($projectDir . '\public_html\\' . $imgPath);
         }
 
         //remove the service

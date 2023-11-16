@@ -46,13 +46,13 @@
                 {% if (app.user.roles[0] is same as('ROLE_ADMIN')) or (app.user.roles[0] is same as('ROLE_STAFF')) %}
                     <button 
                         class='btn margin-10 t-center'
-                        onclick= 'location.href="/modifier-annonce"+ {{ annonce.id }}'
+                        onclick= 'location.href="./modifier-annonce"+ {{ annonce.id }}'
                         >
                         Modifier
                     </button>
                     <button 
                         class='btn margin-10 t-center'
-                        onclick= 'location.href="/supprimer-annonce"+ {{ annonce.id }}'
+                        onclick= 'location.href="./supprimer-annonce"+ {{ annonce.id }}'
                         >
                         Supprimer
                     </button>

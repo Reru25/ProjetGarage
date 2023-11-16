@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class ServiceType extends AbstractType
 {
@@ -31,7 +32,7 @@ class ServiceType extends AbstractType
                     'maxlength' => 80,
                     ),
                 ])
-            ->add('price', TextType::class, [
+            ->add('price', NumberType::class, [
                 'label'=>'Prix (Laisser vide si bouton de contact)',
                 'required' => false,
                 'attr' => array(

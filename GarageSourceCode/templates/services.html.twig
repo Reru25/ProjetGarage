@@ -3,6 +3,10 @@
 {% block title %}Prestations{% endblock %}
 
 {% block content %}
+    <ul class='breadcrumbs'>
+        <li class='breadcrumb'><a class='breadcrumb' href="./">Accueil ></a></li>
+        <li class='breadcrumb'>Prestations</li>
+    </ul>
     <div class='annonces-block-list'>
         {% for service in services %}
             <div class='annonce-block '>
@@ -17,7 +21,7 @@
                         {% else %}
                             <button 
                                 class=' btn f-2'
-                                onclick= 'location.href="/contact"'
+                                onclick= 'location.href="./contact"'
                                 >
                                 Obtenir un devis
                             </button>
@@ -26,7 +30,7 @@
                             {% if app.user.roles[0] is same as('ROLE_ADMIN') %}
                                 <button 
                                     class='btn margin-10 t-center'
-                                    onclick= 'location.href="/supprimer-service"+ {{ service.id }}'
+                                    onclick= 'location.href="./supprimer-service"+ {{ service.id }}'
                                     >
                                     Supprimer
                                 </button>

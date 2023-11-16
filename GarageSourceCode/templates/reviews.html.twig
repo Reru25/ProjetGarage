@@ -45,7 +45,7 @@
                     {% if app.user.roles[0] is same as('ROLE_ADMIN') %}
                     <button 
                         class='btn' 
-                        onclick= 'location.href="/supprimer-avis"+ {{ avis.id }}'>
+                        onclick= 'location.href="./supprimer-avis"+ {{ avis.id }}'>
                         SUPPRIMER
                     </button>
                     {% endif %}
